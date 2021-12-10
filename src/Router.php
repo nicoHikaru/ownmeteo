@@ -94,7 +94,7 @@ class Router
      */
     private static function defaultDisplay(Response $response):Response
     {
-        $city = "paris";
+        $city = "saint-jean-de-maurienne";
         $args = self::display($city);
         self::saerchCity($response);
         $time = DateManager::now_time();
