@@ -1,0 +1,50 @@
+.head {
+    width: 100%;
+    height:28vh;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    font-size: 1.5em;
+    margin-top: 2vh;
+    z-index: 1;
+    .villeContenair {
+        //margin-top: 50px;
+        // padding-top: 50px;
+        input[type=text] {
+            border-radius: 10px;
+            width: 100%;
+            height: 2.8vh;
+            padding-left: 10px;
+        }
+    }
+}
+.textCenter {
+    text-align: center;
+}
+.title {
+    font-size: 2em;
+}
+.nextDay {
+    color:#daff1b;
+    i {
+        font-size: 0.8em;
+        margin-left: 5px;
+        opacity: 0.8;
+    }
+    &:hover {
+        cursor: pointer;
+        color:#daff1b;
+    }
+}
+.submit {
+    background:rgba(0,0,0,0.1);
+    padding:2.5px 2.5px;
+    border-radius: 50%;
+    border: 0;
+    margin-left: 10px;
+    i {
+        font-size: 1.2em;
+        color:rgb(253, 239, 255);
+    }
+}

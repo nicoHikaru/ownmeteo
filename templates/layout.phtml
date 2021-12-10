@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ownmeteo</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"/>
+        <link rel="icon" href="sun.ico"/>
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+    </head>
+
+<body>
+    <div class="flexCenterColumn" id="display">
+        <div class="head" id="head">
+            <p class="title"><?php echo $args['city_info']['name'];?></p>
+                </br>
+            <p class="title" id="dataIntitle"><?php echo $args['fcst_day_0']['date'];?></p>
+            <div>
+                <form method="POST" class="villeContenair flexCenterRow">
+                    <input type="text" placeholder="recherche ville..." id="ville" class="ville" name="ville"/>
+                    <button name="submit" class="submit">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <?php if(isset($error)):?>
+                        <?= htmlentities($error);?>
+                    <?php endif;?>
+                </form>
+            </div>
+        </div>
+
+        <div class="conteneirDetail">
+            <div class="detail flexCenterColumn" id="detailCurrentConditionHome">
+                <span class="titleDetail">
+                    <p class="textDetail">Aujourd'hui (<?php echo $args['fcst_day_0']['day_long'];?>)</p>
+                </span>
+                <div class="conditionDetail">
+                    <img src="<?php echo $args['current_condition']['icon_big'];?>"/>
+                    <div>
+                        <span class="textDetail"><?php echo $args['fcst_day_0']['date'];?></span>
+                        <span class="textDetailTmp"><?php echo $args['current_condition']['tmp'];?>°c</span>
+                        <span class="opacity textDetail"><?php echo $args['current_condition']['condition'];?></span>
+                    </div>
+                </div>
+                <div class="tmpDetail" id="currentTmp">
+                    <div>
+                        <p class="tmpDetailTitle">Min</p>
+                        <p class="textDetail"><?php echo $args['fcst_day_0']['tmin'];?>°c</p>
+                    </div>
+                    <div>
+                        <p class="tmpDetailTitle">Max</p>
+                        <p class="textDetail"><?php echo $args['fcst_day_0']['tmax'];?>°c</p>
+                    </div>
+                    <div>
+                        <p class="tmpDetailTitle">Humidité</p>
+                        <p class="textDetail"><?php echo $args['current_condition']['humidity'];?>%</p>
+                    </div>
+                    <div>
+                        <p class="tmpDetailTitle">Vent</p>
+                        <p class="textDetail"><?php echo $args['current_condition']['wnd_spd'];?></p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="infoDesktop" id="infoDesktop">
+                <div>
+                    <h2>Lever-Coucher</h2>
+                    <div>
+                        <span>
+                            <img src="./../img/sun.png"/> 
+                            <p class="textDetail"><?php echo $args['city_info']['sunrise'];?></p>
+                        </span>
+                        <span>
+                            <img src="./../img/moon.png"/>
+                            <p class="textDetail"><?php echo $args['city_info']['sunset'];?></p>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tmpDetail" id="currentTmpDeskop">
+                <div class="flexCenterColumn">
+                    <p class="tmpDetailTitle">Min</p>
+                    <p class="textDetail"><?php echo $args['fcst_day_0']['tmin'];?>°c</p>
+                </div>
+                <div class="flexCenterColumn">
+                    <p class="tmpDetailTitle">Max</p>
+                    <p class="textDetail"><?php echo $args['fcst_day_0']['tmax'];?>°c</p>
+                </div>
+                <div class="flexCenterColumn">
+                    <p class="tmpDetailTitle">Humidité</p>
+                    <p class="textDetail"><?php echo $args['current_condition']['humidity'];?>%</p>
+                </div>
+                <div class="flexCenterColumn">
+                    <p class="tmpDetailTitle">Vent</p>
+                    <p class="textDetail"><?php echo $args['current_condition']['wnd_spd'];?></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="navigation" id="navigation">
+            <ul>
+                <li id="todayA">Aujourd'hui</li>
+                <li class="nextDay" id="nextDay">
+                    jours d'après
+                    <i class="fas fa-chevron-right"></i>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="contenairListeTodayTmp" id="contenairListeTodayTmp">
+        <ul class="listeTodayTmp">
+            <?php if("0" > $time): ?>
+                <li>
+                    0H00
+                    <img src="<?php echo $args['fcst_day_0']['hourly_data']['0H00']['ICON'];?>" class="imgBody" /> 
+                    <?php echo $args['fcst_day_0']['hourly_data']['0H00']['CONDITION'];?>
+                </li>
+            <?php endif;?>
+            <?php if("1" > $time): ?>
+                <li>
+                    1H00
+                    <img src="<?php echo $args['fcst_day_0']['hourly_data']['1H00']['ICON'];?>" class="imgBody" /> 
+                    <?php echo $args['fcst_day_0']['hourly_data']['1H00']['CONDITION'];?>
+                </li>
+            <?php endif;?>
+            <?php if("2" > $time): ?>
+                <li>
+                    2H00
+                    <img src="<?php echo $args['fcst_day_0']['hourly_data']['2H00']['ICON'];?>" class="imgBody" /> 
+                    <?php echo $args['fcst_day_0']['hourly_data']['2H00']['CONDITION'];?>
+                </li>
+            <?php endif;?>
+            <?php if("3" > $time): ?>
+                <li>
+                    3H00
+                    <img src="<?php echo $args['fcst_day_0']['hourly_data']['3H00']['ICON'];?>" class="imgBody" /> 
+                    <?php echo $args['fcst_day_0']['hourly_data']['3H00']['CONDITION'];?>
+                </li>
+            <?php endif;?>
+            <?php if("4" > $time): ?>
+                <li>
+                    4H00
+                    <img src="<?php echo $args['fcst_day_0']['hourly_data']['4H00']['ICON'];?>" class="imgBody" /> 
+                    <?php echo $args['fcst_day_0']['hourly_data']['4H00']['CONDITION'];?>
+                </li>
+            <?php endif;?>
+            <?php if("5" > $time): ?>
+                <li>
+                    5H00
+                    <img src="<?php echo $args['fcst_day_0']['hourly_data']['5H00']['ICON'];?>" class="imgBody" /> 
+                    <?php echo $args['fcst_day_0']['hourly_data']['5H00']['CONDITION'];?>
+                </li>
+            <?php endif;?>
+            <?php if("6" > $time): ?>
+                <li>
+                    6H00
+                    <img src="<?php echo $args['fcst_day_0']['hourly_data']['6H00']['ICON'];?>" class="imgBody" /> 
+                    <?php echo $args['fcst_day_0']['hourly_data']['6H00']['CONDITION'];?>
+                </li>
+            <?php endif;?>
+            <?php if("7" > $time): ?>
+                <li>
+                    7H00
+                    <img src="<?php echo $args['fcst_day_0']['hourly_data']['7H00']['ICON'];?>" class="imgBody" /> 
+                    <?php echo $args['fcst_day_0']['hourly_data']['7H00']['CONDITION'];?>
+                </li>
+            <?php endif;?>
+            <?php if("8" > $time): ?>
+                <li>
+                    8H00
+                    <img src="<?php echo $args['fcst_day_0']['hourly_data']['8H00']['ICON'];?>" class="imgBody" /> 
+                    <?php echo $args['fcst_day_0']['hourly_data']['8H00']['CONDITION'];?>
+                </li>
+            <?php endif;?>
+            <?php if("9" > $time): ?>
+                <li>
+                    9H00
+                    <img src="<?php echo $args['fcst_day_0']['hourly_data']['9H00']['ICON'];?>" class="imgBody" /> 
+                    <?php echo $args['fcst_day_0']['hourly_data']['9H00']['CONDITION'];?>
+                </li>
+            <?php endif;?>
+            <?php if("10" > $time): ?>
+            <li>
+                10H00
+                <img src="<?php echo $args['fcst_day_0']['hourly_data']['10H00']['ICON'];?>" class="imgBody" /> 
+                <?php echo $args['fcst_day_0']['hourly_data']['10H00']['CONDITION'];?>
+            </li>
+            <?php endif;?>
+            <?php if("11" > $time): ?>
+                <li>
+                    11H00
+                    <img src="<?php echo $args['fcst_day_0']['hourly_data']['11H00']['ICON'];?>" class="imgBody" /> 
+                    <?php echo $args['fcst_day_0']['hourly_data']['11H00']['CONDITION'];?>
+                </li>
+            <?php endif;?>
+            <?php if("12" > $time): ?>
+                <li>
+                    12H00
+                    <img src="<?php echo $args['fcst_day_0']['hourly_data']['12H00']['ICON'];?>" class="imgBody" /> 
+                    <?php echo $args['fcst_day_0']['hourly_data']['12H00']['CONDITION'];?>
+                </li>
+            <?php endif;?>
+            <?php if("13" > $time): ?>
+                <li>
+                    13H00
+                    <img src="<?php echo $args['fcst_day_0']['hourly_data']['13H00']['ICON'];?>" class="imgBody" /> 
+                    <?php echo $args['fcst_day_0']['hourly_data']['13H00']['CONDITION'];?>
+                </li>
+            <?php endif;?>
+            <?php if("14" > $time): ?>
+                <li>
+                    14H00
+                    <img src="<?php echo $args['fcst_day_0']['hourly_data']['14H00']['ICON'];?>" class="imgBody" /> 
+                    <?php echo $args['fcst_day_0']['hourly_data']['14H00']['CONDITION'];?>
+                </li>
+            <?php endif;?>
+            <?php if("15" > $time): ?>
+                <li>
+                    15H00
+                    <img src="<?php echo $args['fcst_day_0']['hourly_data']['15H00']['ICON'];?>" class="imgBody" /> 
+                    <?php echo $args['fcst_day_0']['hourly_data']['15H00']['CONDITION'];?>
+                </li>
+            <?php endif;?>
+            <?php if("16" > $time): ?>
+                <li>
+                    16H00
+                    <img src="<?php echo $args['fcst_day_0']['hourly_data']['16H00']['ICON'];?>" class="imgBody" /> 
+                    <?php echo $args['fcst_day_0']['hourly_data']['16H00']['CONDITION'];?>
+                </li>
+            <?php endif;?>
+            <?php if("17" > $time): ?>
+                <li>
+                    17H00
+                    <img src="<?php echo $args['fcst_day_0']['hourly_data']['17H00']['ICON'];?>" class="imgBody" /> 
+                    <?php echo $args['fcst_day_0']['hourly_data']['17H00']['CONDITION'];?>
+                </li>
+            <?php endif;?>
+            <?php if("18" > $time): ?>
+                <li>
+                    18H00
+                    <img src="<?php echo $args['fcst_day_0']['hourly_data']['18H00']['ICON'];?>" class="imgBody" /> 
+                    <?php echo $args['fcst_day_0']['hourly_data']['18H00']['CONDITION'];?>
+                </li>
+            <?php endif;?>
+            <?php if("19" > $time): ?>
+            <li>
+                19H00
+                <img src="<?php echo $args['fcst_day_0']['hourly_data']['19H00']['ICON'];?>" class="imgBody" /> 
+                <?php echo $args['fcst_day_0']['hourly_data']['19H00']['CONDITION'];?>
+            </li>
+            <?php endif;?>
+            <?php if("20" > $time): ?>
+                <li>
+                    20H00
+                    <img src="<?php echo $args['fcst_day_0']['hourly_data']['20H00']['ICON'];?>" class="imgBody" /> 
+                    <?php echo $args['fcst_day_0']['hourly_data']['20H00']['CONDITION'];?>
+                </li>
+            <?php endif;?>
+            <?php if("21" > $time): ?>
+                <li>
+                    21H00
+                    <img src="<?php echo $args['fcst_day_0']['hourly_data']['21H00']['ICON'];?>" class="imgBody" /> 
+                    <?php echo $args['fcst_day_0']['hourly_data']['21H00']['CONDITION'];?>
+                </li>
+            <?php endif;?>
+            <?php if("22" > $time): ?>
+                <li>
+                    22H00
+                    <img src="<?php echo $args['fcst_day_0']['hourly_data']['22H00']['ICON'];?>" class="imgBody" /> 
+                    <?php echo $args['fcst_day_0']['hourly_data']['22H00']['CONDITION'];?>
+                </li>
+            <?php endif;?>
+            <?php if("23" > $time): ?>
+                <li>
+                    23H00
+                    <img src="<?php echo $args['fcst_day_0']['hourly_data']['23H00']['ICON'];?>" class="imgBody" /> 
+                    <?php echo $args['fcst_day_0']['hourly_data']['23H00']['CONDITION'];?>
+                </li>
+            <?php endif;?>
+        </ul>
+    </div>
+
+    <div class="body flexCenterColumn" id="body">
+        <span class="close" id="close">
+            <i class="fas fa-arrow-circle-left"></i>
+        </span>
+        <div class="detail flexCenterColumn" id="detailTmp1">
+            <span class="titleDetail">
+                <p class="textDetail">Demain (<?php echo $args['fcst_day_1']['day_long'];?>)</p>
+            </span>
+            <div class="conditionDetail">
+                <img src="<?php echo $args['fcst_day_1']['icon_big'];?>"/>
+                <div>
+                    <span class="textDetail"><?php echo $args['fcst_day_1']['date'];?></span>
+                    <span class="textDetail"><?php echo $args['city_info']['name'];?></span>
+                    <span class="opacity textDetail"><?php echo $args['fcst_day_1']['condition'];?></span>
+                </div>
+            </div>
+            <div class="tmpDetail">
+                <div>
+                    <p class="tmpDetailTitle">Min</p>
+                    <p class="textDetail"><?php echo $args['fcst_day_1']['tmin'];?>°c</p>
+                </div>
+                <div>
+                    <p class="tmpDetailTitle">Max</p>
+                    <p class="textDetail"><?php echo $args['fcst_day_1']['tmax'];?>°c</p>
+                </div>
+                <div>
+                    <p class="tmpDetailTitle">Jour</p>
+                    <p class="textDetail"><?php echo $args['city_info']['sunrise'];?></p>
+                </div>
+                <div>
+                    <p class="tmpDetailTitle">Nuit</p>
+                    <p class="textDetail"><?php echo $args['city_info']['sunset'];?></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="detail flexCenterColumn" id="detailTmp2">
+            <span class="titleDetail">
+                <p class="textDetail"><?php echo $args['fcst_day_2']['day_long'];?></p>
+            </span>
+            <div class="conditionDetail">
+                <img src="<?php echo $args['fcst_day_2']['icon_big'];?>"/>
+                <div>
+                    <span class="textDetail"><?php echo $args['fcst_day_2']['date'];?></span>
+                    <span class="textDetail"><?php echo $args['city_info']['name'];?></span>
+                    <span class="opacity textDetail"><?php echo $args['fcst_day_2']['condition'];?></span>
+                </div>
+            </div>
+            <div class="tmpDetail">
+                <div>
+                    <p class="tmpDetailTitle">Min</p>
+                    <p class="textDetail"><?php echo $args['fcst_day_2']['tmin'];?>°c</p>
+                </div>
+                <div>
+                    <p class="tmpDetailTitle">Max</p>
+                    <p class="textDetail"><?php echo $args['fcst_day_2']['tmax'];?>°c</p>
+                </div>
+                <div>
+                    <p class="tmpDetailTitle">Jour</p>
+                    <p class="textDetail"><?php echo $args['city_info']['sunrise'];?></p>
+                </div>
+                <div>
+                    <p class="tmpDetailTitle">Nuit</p>
+                    <p class="textDetail"><?php echo $args['city_info']['sunset'];?></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="detail flexCenterColumn" id="detailTmp3">
+            <span class="titleDetail">
+                <p class="textDetail"><?php echo $args['fcst_day_3']['day_long'];?></p>
+            </span>
+            <div class="conditionDetail">
+                <img src="<?php echo $args['fcst_day_3']['icon_big'];?>"/>
+                <div>
+                    <span class="textDetail"><?php echo $args['fcst_day_3']['date'];?></span>
+                    <span class="textDetail"><?php echo $args['city_info']['name'];?></span>
+                    <span class="opacity textDetail"><?php echo $args['fcst_day_3']['condition'];?></span>
+                </div>
+            </div>
+            <div class="tmpDetail">
+                <div>
+                    <p class="tmpDetailTitle">Min</p>
+                    <p class="textDetail"><?php echo $args['fcst_day_3']['tmin'];?>°c</p>
+                </div>
+                <div>
+                    <p class="tmpDetailTitle">Max</p>
+                    <p class="textDetail"><?php echo $args['fcst_day_3']['tmax'];?>°c</p>
+                </div>
+                <div>
+                    <p class="tmpDetailTitle">Jour</p>
+                    <p class="textDetail"><?php echo $args['city_info']['sunrise'];?></p>
+                </div>
+                <div>
+                    <p class="tmpDetailTitle">Nuit</p>
+                    <p class="textDetail"><?php echo $args['city_info']['sunset'];?></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="detail flexCenterColumn" id="detailTmp4">
+            <span class="titleDetail">
+                <p class="textDetail"><?php echo $args['fcst_day_4']['day_long'];?></p>
+            </span>
+            <div class="conditionDetail">
+                <img src="<?php echo $args['fcst_day_4']['icon_big'];?>"/>
+                <div>
+                    <span class="textDetail"><?php echo $args['fcst_day_4']['date'];?></span>
+                    <span class="textDetail"><?php echo $args['city_info']['name'];?></span>
+                    <span class="opacity textDetail"><?php echo $args['fcst_day_4']['condition'];?></span>
+                </div>
+            </div>
+            <div class="tmpDetail">
+                <div>
+                    <p class="tmpDetailTitle">Min</p>
+                    <p class="textDetail"><?php echo $args['fcst_day_4']['tmin'];?>°c</p>
+                </div>
+                <div>
+                    <p class="tmpDetailTitle">Max</p>
+                    <p class="textDetail"><?php echo $args['fcst_day_4']['tmax'];?>°c</p>
+                </div>
+                <div>
+                    <p class="tmpDetailTitle">Jour</p>
+                    <p class="textDetail"><?php echo $args['city_info']['sunrise'];?></p>
+                </div>
+                <div>
+                    <p class="tmpDetailTitle">Nuit</p>
+                    <p class="textDetail"><?php echo $args['city_info']['sunset'];?></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="nextDayDays">
+            <ul>
+                <li class="tmp" id="tmp1">
+                    <img src="<?php echo $args['fcst_day_1']['icon'];?>" class="imgBody" /> 
+                    <p><?php echo $args['fcst_day_1']['condition_key'];?></p>
+                    <p><?php echo $args['fcst_day_1']['tmax'];?>°c</p>
+                    <p><?php echo $args['fcst_day_1']['day_long'];?></p>
+                </li>
+                <li class="tmp" id="tmp2">
+                    <img src="<?php echo $args['fcst_day_2']['icon'];?>" class="imgBody" /> 
+                    <p><?php echo $args['fcst_day_2']['condition_key'];?></p>
+                    <p><?php echo $args['fcst_day_2']['tmax'];?>°c</p>
+                    <p><?php echo $args['fcst_day_2']['day_long'];?></p>
+                </li>
+                <li class="tmp" id="tmp3">
+                    <img src="<?php echo $args['fcst_day_3']['icon'];?>" class="imgBody" /> 
+                    <p><?php echo $args['fcst_day_3']['condition_key'];?></p>
+                    <p><?php echo $args['fcst_day_3']['tmax'];?>°c</p>
+                    <p><?php echo $args['fcst_day_3']['day_long'];?></p>
+                </li>
+                <li class="tmp" id="tmp4">
+                    <img src="<?php echo $args['fcst_day_4']['icon'];?>" class="imgBody" /> 
+                    <p><?php echo $args['fcst_day_4']['condition_key'];?></p>
+                    <p><?php echo $args['fcst_day_4']['tmax'];?>°c</p>
+                    <p><?php echo $args['fcst_day_4']['day_long'];?></p>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script type="module" src="./../js/main.js"></script>
+</body>
+</html>

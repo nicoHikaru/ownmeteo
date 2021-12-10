@@ -1,0 +1,47 @@
+@mixin body {
+    @media(min-width: $desktopMin) {
+        .body{
+            width: 30%;
+            height: auto;
+            position: absolute;
+            left: 70%;
+            top: 0;
+            z-index: 2;
+            margin-top: 100px;
+        }
+        #nextDay {
+            display: none;
+        }
+        #close {
+            display: none;
+        }
+        .conteneirDetail {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+        }
+        #currentTmpDeskop {
+            display: flex;
+            width: 100%;
+            border: 2px solid rgb(238, 255, 255);
+            padding: 80px 40px;
+            margin-left: 20px;
+            border-radius:20px;
+            div {
+                margin-left: 10px;
+                .tmpDetailTitle {
+                    font-size: 1.8em;
+                }
+                .textDetail {
+                    font-size: 1.5em;
+                }
+            }
+        }
+        #currentTmp {
+            display: none;
+        }
+        
+    }
+}
+@include body();

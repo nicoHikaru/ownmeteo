@@ -1,0 +1,8 @@
+@mixin infoDesktop {
+    @media(min-width: $tabletteMin) AND (max-width: $tabletteMax) {
+        .infoDesktop {
+            display: none;
+        }
+    }
+}
+@include infoDesktop();

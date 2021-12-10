@@ -1,0 +1,52 @@
+* {
+    margin:0;
+    padding: 0;
+}
+
+body {
+	font-size: 62.5%;
+	color:#ffffff;
+    background: rgb(0, 71, 77);
+}
+#app {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction:column;
+}
+.flexCenterColumn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.flexCenterRow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+.fontSize {
+    margin-top: 10px;
+    font-size: 2em;
+}
+.fontSizeText {
+    font-size: 1.5em;
+}
+$desktopMin:1367px;
+$tabletteMin:768px;
+$tabletteMax:1366px;
+@import "libs/phone/head.scss";
+@import "libs/phone/currentCondition.scss";
+@import "libs/phone/navigation.scss";
+@import "libs/phone/listeTodayTmp.scss";
+@import "libs/phone/body.scss";
+@import "libs/phone/infoDesktop.scss";
+
+@import "libs/tablette/body.scss";
+@import "libs/tablette/infoDesktop.scss";
+@import "libs/tablette/listTodayTmp.scss";
+
+@import "libs/desktop/body.scss";
+@import "libs/desktop/listTodayTmp.scss";
+@import "libs/desktop/infoDesktop.scss";

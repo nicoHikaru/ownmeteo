@@ -1,0 +1,32 @@
+@mixin listTodayTmp {
+    @media(min-width: $tabletteMin) AND (max-width: $tabletteMax) {
+        .contenairListeTodayTmp {
+            // width: 90%;
+            // height: 20vh;
+            .listeTodayTmp {
+                list-style: none;
+                overflow-x: scroll;
+                padding: 20px 0px;
+                li {
+                    max-width: 30%;
+                    height: 10vh;
+                    list-style: none;
+                    padding: 5px 5px;
+                    margin-left: 5px;
+                    border:1px solid white;
+                    border-radius: 20px;
+                    display: flex;
+                    flex-direction: column;
+                    text-align: center;
+                    font-size: 1.5em;
+                    .imgBody {
+                        width:50px;
+                        height:50px;
+                        margin: 0 auto;
+                    }
+                }
+            }
+        }
+    }
+}
+@include listTodayTmp();
