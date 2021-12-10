@@ -6,7 +6,7 @@ weather app
 
 - for this application only the ip from france match with the api
 
-- if ip cannot be processed, paris will be returned by default
+- if ip cannot be processed, saint-jean-de-maurienne will be returned by default
 
 - this application was built in native php, mysql, html, css/sass ,framework slim
 
